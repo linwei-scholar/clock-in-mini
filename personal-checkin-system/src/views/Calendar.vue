@@ -72,6 +72,14 @@ const fullCalendarRef = ref(null)
 const viewType = ref('dayGridMonth')
 const selectedPlanId = ref('')
 
+const handleEventClick = (info) => {
+  ElMessage.info(`查看打卡记录：${info.event.title}`)
+}
+
+const handleDateClick = (info) => {
+  ElMessage.info(`选择日期：${info.dateStr}`)
+}
+
 const calendarOptions = reactive({
   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
   initialView: 'dayGridMonth',
@@ -101,14 +109,6 @@ const changeDate = (direction) => {
     }
     updateEvents()
   }
-}
-
-const handleEventClick = (info) => {
-  ElMessage.info(`查看打卡记录：${info.event.title}`)
-}
-
-const handleDateClick = (info) => {
-  ElMessage.info(`选择日期：${info.dateStr}`)
 }
 
 const updateEvents = () => {
