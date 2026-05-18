@@ -125,7 +125,7 @@ import {
   Star, 
   Briefcase, 
   Heart,
-  Headphones,
+  Headset,
   Camera,
   Brush
 } from '@element-plus/icons-vue'
@@ -163,7 +163,7 @@ const iconComponents = {
   Star,
   Briefcase,
   Heart,
-  Headphones,
+  Headset,
   Camera,
   Brush
 }
@@ -176,7 +176,7 @@ const iconOptions = [
   { label: '星星', value: 'Star' },
   { label: '公文包', value: 'Briefcase' },
   { label: '心形', value: 'Heart' },
-  { label: '音乐', value: 'Headphones' },
+  { label: '音乐', value: 'Headset' },
   { label: '相机', value: 'Camera' },
   { label: '画笔', value: 'Brush' }
 ]
