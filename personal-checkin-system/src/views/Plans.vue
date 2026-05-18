@@ -136,6 +136,7 @@ import { usePlanStore } from '@/stores/planStore'
 import { useTagStore } from '@/stores/tagStore'
 import { useRecordStore } from '@/stores/recordStore'
 import ResponsiveLayout from '@/components/ResponsiveLayout.vue'
+import { showSuccess, showError } from '@/utils/message'
 
 const planStore = usePlanStore()
 const tagStore = useTagStore()
