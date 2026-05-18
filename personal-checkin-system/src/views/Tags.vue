@@ -24,7 +24,7 @@
             <el-card class="tag-card" shadow="hover">
               <div class="tag-content">
                 <div class="tag-icon" :style="{ backgroundColor: tag.color }">
-                  <el-icon><component :is="tag.icon" /></el-icon>
+                  <el-icon><component :is="iconComponents[tag.icon]" /></el-icon>
                 </div>
                 <div class="tag-info">
                   <h3 class="tag-name">{{ tag.name }}</h3>
@@ -90,7 +90,7 @@
                 :value="icon.value"
               >
                 <div class="icon-option">
-                  <el-icon><component :is="icon.value" /></el-icon>
+                  <el-icon><component :is="iconComponents[icon.value]" /></el-icon>
                   <span>{{ icon.label }}</span>
                 </div>
               </el-option>
@@ -114,9 +114,21 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { Plus } from '@element-plus/icons-vue'
+import { 
+  Plus, 
+  PriceTag, 
+  Running, 
+  Food, 
+  Reading, 
+  Star, 
+  Briefcase, 
+  Heart,
+  Headphones,
+  Camera,
+  Brush
+} from '@element-plus/icons-vue'
 import { useTagStore } from '@/stores/tagStore'
 import { usePlanStore } from '@/stores/planStore'
 import { useAuthStore } from '@/stores/authStore'
@@ -125,6 +137,12 @@ import ResponsiveLayout from '@/components/ResponsiveLayout.vue'
 const tagStore = useTagStore()
 const planStore = usePlanStore()
 const authStore = useAuthStore()
+
+onMounted(() => {
+  if (authStore.userInfo?.id) {
+    tagStore.loadTags(authStore.userInfo.id)
+  }
+})
 
 const dialogVisible = ref(false)
 const dialogType = ref('create')
@@ -136,6 +154,19 @@ const form = reactive({
   icon: 'PriceTag',
   color: '#409EFF'
 })
+
+const iconComponents = {
+  PriceTag,
+  Running,
+  Food,
+  Reading,
+  Star,
+  Briefcase,
+  Heart,
+  Headphones,
+  Camera,
+  Brush
+}
 
 const iconOptions = [
   { label: '价格标签', value: 'PriceTag' },

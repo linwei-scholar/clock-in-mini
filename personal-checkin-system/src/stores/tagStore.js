@@ -18,6 +18,8 @@ export const useTagStore = defineStore('tag', () => {
     const index = tags.value.findIndex(t => t.id === tagId)
     if (index !== -1) {
       tags.value[index] = { ...tags.value[index], ...updates }
+      // 触发响应式更新
+      tags.value = [...tags.value]
       saveTags()
     }
   }
